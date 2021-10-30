@@ -7,15 +7,14 @@ const Home = ({ userObj }) => {
 	const [tweets, setTweets] = useState([]);
 
 	useEffect(() => {
+		const q = query(collection(dbService, "tweets"), orderBy("createdAt", "desc"));
 		// when any changes on DB
-		onSnapshot(query(collection(dbService, "tweets"), orderBy("createdAt", "desc")),
-			(snapshot) => {
-				const tweetArray = snapshot.docs.map((doc) => ({
-					id: doc.id,
-					...doc.data(),
+		onSnapshot(q, (snapshot) => {
+			const tweetArray = snapshot.docs.map((doc) => ({
+				id: doc.id,
+				...doc.data(),
 			}));
 			setTweets(tweetArray);
-			console.log(tweetArray);
 		});
 	}, [])
 
@@ -45,7 +44,7 @@ const Home = ({ userObj }) => {
 			<div>
 				{tweets.map((tweet) => 
 					<div key={tweet.id}>
-						<h4>{tweet.tweet}</h4>
+						<h4>{tweet.text}</h4>
 					</div>
 				)}
 			</div>
