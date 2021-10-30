@@ -1,30 +1,31 @@
-import { addDoc, collection, serverTimestamp, getDocs, query } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, query, onSnapshot, orderBy } from "firebase/firestore";
 import { dbService } from "fbase";
 import React, { useEffect, useState } from "react";
 
-const Home = () => {
+const Home = ({ userObj }) => {
 	const [tweet, setTweet] = useState("");
 	const [tweets, setTweets] = useState([]);
-	const getTweets = async () => {
-		const q = query(collection(dbService, "tweets")); // get query
-		const querySnapshot = await getDocs(q); // get collection
-		querySnapshot.forEach((doc) => {
-			const tweetObj = { // creating tweet obj
-				...doc.data(),
-				id: doc.id
-			}
-			setTweets(prev => [tweetObj, ...prev]); // concatenating tweets
-		})
-	}
+
 	useEffect(() => {
-		getTweets();
+		// when any changes on DB
+		onSnapshot(query(collection(dbService, "tweets"), orderBy("createdAt", "desc")),
+			(snapshot) => {
+				const tweetArray = snapshot.docs.map((doc) => ({
+					id: doc.id,
+					...doc.data(),
+			}));
+			setTweets(tweetArray);
+			console.log(tweetArray);
+		});
 	}, [])
+
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		try {
 			await addDoc(collection(dbService, "tweets"), {
-				tweet,
+				text: tweet,
 				createdAt: serverTimestamp(),
+				creatorId: userObj.uid,
 			});
 		} catch(error) {
 			console.log(error);
