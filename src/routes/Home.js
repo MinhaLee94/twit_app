@@ -3,7 +3,7 @@ import { dbService, storageService } from "fbase";
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Tweet from "components/Tweet";
-import { ref, uploadString } from "@firebase/storage";
+import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 
 const Home = ({ userObj }) => {
 	const [tweet, setTweet] = useState("");
@@ -24,19 +24,21 @@ const Home = ({ userObj }) => {
 
 	const onSubmit = async (event) => {
 		event.preventDefault();
-		const fileRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
-		const response = await uploadString(fileRef, attachedFile, "data_url");
-		console.log(response);
-		/*try {
-			await addDoc(collection(dbService, "tweets"), {
-				text: tweet,
-				createdAt: serverTimestamp(),
-				creatorId: userObj.uid,
-			});
-		} catch(error) {
-			console.log(error);
+		let attachedFileUrl = "";
+		if(attachedFile !== ""){
+			const attachedFileRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
+			const response = await uploadString(attachedFileRef, attachedFile, "data_url");
+			console.log(response);
 		}
-		setTweet(""); */
+		
+		await addDoc(collection(dbService, "tweets"), {
+			text: tweet,
+			createdAt: serverTimestamp(),
+			creatorId: userObj.uid,
+			attachedFileUrl
+		});
+		setTweet("");
+		setAttachedFile("");
 	};
 	const onChange = (event) => {
 		const { target: { value }} = event;
