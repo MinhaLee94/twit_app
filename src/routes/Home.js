@@ -28,7 +28,7 @@ const Home = ({ userObj }) => {
 		if(attachedFile !== ""){
 			const attachedFileRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
 			const response = await uploadString(attachedFileRef, attachedFile, "data_url");
-			console.log(response);
+			attachedFileUrl = await getDownloadURL(response.ref);
 		}
 		
 		await addDoc(collection(dbService, "tweets"), {
