@@ -8,7 +8,7 @@ import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 const Home = ({ userObj }) => {
 	const [tweet, setTweet] = useState("");
 	const [tweets, setTweets] = useState([]);
-	const [attachedFile, setAttachedFile] = useState();
+	const [attachedFile, setAttachedFile] = useState("");
 
 	useEffect(() => {
 		const q = query(collection(dbService, "tweets"), orderBy("createdAt", "desc"));
