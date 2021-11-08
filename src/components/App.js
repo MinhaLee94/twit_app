@@ -12,21 +12,31 @@ function App() {
 		authService.onAuthStateChanged((user) => {
 			if(user) {
 				if(user.displayName === null) {
-					user.updateProfile({
+					updateProfile(user, {
 						displayName: "User",
 					});
 				}
 				setIsLoggedIn(true);
-				setUserObj(user);
+				setUserObj({
+					uid: user.uid,
+					displayName: user.displayName
+				});
 			} else {
 				setIsLoggedIn(false)
 			}
 			setInit(true);
 		}); 
 	}, []);
+	const refreshUser = () => {
+		const user = authService.currentUser;
+		setUserObj({
+			uid: user.uid,
+			displayName: user.displayName
+		});
+	}
   	return (
 		<>
-	  		{init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initializing..."}
+	  		{init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} refreshUser={refreshUser} /> : "Initializing..."}
 			<footer>&copy; {new Date().getFullYear()} Twit-app</footer>
 		</>
 	);
