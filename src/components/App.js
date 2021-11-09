@@ -5,7 +5,6 @@ import { updateProfile } from "@firebase/auth";
 
 function App() {
 	const [init, setInit] = useState(false);
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userObj, setUserObj] = useState(null);
 
 	useEffect(() => {
@@ -16,13 +15,12 @@ function App() {
 						displayName: "User",
 					});
 				}
-				setIsLoggedIn(true);
 				setUserObj({
 					uid: user.uid,
 					displayName: user.displayName
 				});
 			} else {
-				setIsLoggedIn(false)
+				setUserObj(null);
 			}
 			setInit(true);
 		}); 
@@ -36,7 +34,7 @@ function App() {
 	}
   	return (
 		<>
-	  		{init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} refreshUser={refreshUser} /> : "Initializing..."}
+	  		{init ? <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} refreshUser={refreshUser} /> : "Initializing..."}
 			<footer>&copy; {new Date().getFullYear()} Twit-app</footer>
 		</>
 	);

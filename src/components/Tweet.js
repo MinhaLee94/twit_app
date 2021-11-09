@@ -30,7 +30,6 @@ const Tweet = ({ tweetObj, isOwner}) => {
 		const { target: { value }} = event;
 		setNewTweet(value);
 	}
-
 	return (
 		<div>
 			{editing ? (
