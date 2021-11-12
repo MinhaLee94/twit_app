@@ -16,6 +16,7 @@ const Auth = () => {
 			await signInWithPopup(authService, provider);
 		} catch(error) {
 			console.log(error);
+			const data = error;
 		}
 	}
 
