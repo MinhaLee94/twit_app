@@ -5,33 +5,37 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
+const TwitIcon = styled(Link)`
+	margin-right: 10px;
+`;
 
+const ProfileIcon = styled(Link)`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 10px;
+	font-size: 12px;
+	text-decoration: none;
+	&:visited {
+		color: #04AAFF;
+	} 
+`;
 
 const Navigation = ({ userObj }) => <nav>
 	<ul style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
 		<li>
-			<Link to="/" style={{ marginRight: 10 }}>
+			<TwitIcon to="/">
 				<FontAwesomeIcon icon={faTwitter} color={"#04AAFF"} size="2x" />
-			</Link>
+			</TwitIcon>
 		</li>
 		<li>
-		<Link
-          to="/profile"
-          style={{
-            marginLeft: 10,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            fontSize: 12,
-          }}
-        >
+		<ProfileIcon to="/profile">
           <FontAwesomeIcon icon={faUser} color={"#04AAFF"} size="2x" />
           <span style={{ marginTop: 10 }}>
-            {userObj.displayName
-              ? `${userObj.displayName}의 Profile`
-              : "Profile"}
+            {userObj?.displayName
+              ? `${userObj.displayName}` : "User"}`s Profile
           </span>
-        </Link>
+        </ProfileIcon>
 		</li>
 	</ul>
 </nav>;
