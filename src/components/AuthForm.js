@@ -80,7 +80,7 @@ const AuthForm = () => {
 				<LoginInput name="email" type="text" placeholder="Email" required value={email} onChange={onChange}/>
 				<LoginInput name="password" type="password" placeholder="Password" required value={password} onChange={onChange}/>
 				<SubmitBtn type="submit" value={newAccount ? "Create Account" : "Log in"} />
-				{error && <span>{error}</span>}
+				{error && <AuthError>{error}</AuthError>}
 			</LoginForm>
 			<AuthSwitch onClick={toggleAccount}>{newAccount ? "Sign in" : "Create Account"}</AuthSwitch>
 		</>
