@@ -39,4 +39,5 @@ const Navigation = ({ userObj }) => <nav>
 		</li>
 	</ul>
 </nav>;
+
 export default Navigation;
