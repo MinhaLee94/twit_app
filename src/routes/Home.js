@@ -18,14 +18,14 @@ const Home = ({ userObj }) => {
 		});
 	}, [])
 	return (
-		<>
+		<div className="container">
 			<TweetForm userObj={userObj} />
-			<div>
+			<div style={{ marginTop: 30 }}>
 				{tweets.map((tweet) => 
 					<Tweet key={tweet.id} tweetObj={tweet} isOwner={tweet.creatorId === userObj.uid} />
 				)}
 			</div>
-		</>
+		</div>
 	)
 }
 export default Home;

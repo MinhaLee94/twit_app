@@ -2,6 +2,36 @@ import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebas
 import { authService } from "fbase";
 import React from "react";
 import AuthForm from "components/AuthForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter, faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
+import styled from "styled-components";
+
+const AuthContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+`;
+
+const BtnContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 320px;
+`;
+
+const SocialLoginBtn = styled.button`
+	cursor: pointer;
+	border-radius: 20px;
+	border: none;
+	padding: 10px 0px;
+	font-size: 12px;
+	text-align: center;
+	width: 150px;
+	background: white;
+	cursor: pointer;
+`;
 
 const Auth = () => {
 	const onSocialClick = async(event) => {
@@ -20,13 +50,23 @@ const Auth = () => {
 	}
 
 	return (
-		<div>
+		<AuthContainer>
+			<FontAwesomeIcon
+				icon={faTwitter}
+				color={"#04AAFF"}
+				size="3x"
+				style={{ marginBottom: 30 }}
+			/>
 			<AuthForm />
-			<div>
-				<button onClick={onSocialClick} name="google">Continue with Google</button>
-				<button onClick={onSocialClick} name="github">Continue with GitHub</button>
-			</div>
-		</div>
+			<BtnContainer>
+				<SocialLoginBtn onClick={onSocialClick} name="google">
+					Continue with Google <FontAwesomeIcon icon={faGoogle} />
+				</SocialLoginBtn>
+				<SocialLoginBtn onClick={onSocialClick} name="github">
+					Continue with Github <FontAwesomeIcon icon={faGithub} />
+				</SocialLoginBtn>
+			</BtnContainer>
+		</AuthContainer>
 	);
 };
 

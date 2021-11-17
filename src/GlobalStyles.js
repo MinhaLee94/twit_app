@@ -32,6 +32,13 @@ const GlobalStyles = createGlobalStyle`
 	form {
 		width: 100%;
 	}
+
+	.container {
+		width: 100%;
+		max-width: 320px;
+		display: flex;
+		flex-direction: column;
+	}
 `;
 
 export default GlobalStyles;

@@ -5,6 +5,13 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
+const Navbar = styled.ul`
+	display: flex; 
+	justify-content: center; 
+	margin-top: 50px;
+	list-style-type: none;
+`;
+
 const TwitIcon = styled(Link)`
 	margin-right: 10px;
 `;
@@ -22,7 +29,7 @@ const ProfileIcon = styled(Link)`
 `;
 
 const Navigation = ({ userObj }) => <nav>
-	<ul style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
+	<Navbar>
 		<li>
 			<TwitIcon to="/">
 				<FontAwesomeIcon icon={faTwitter} color={"#04AAFF"} size="2x" />
@@ -37,7 +44,7 @@ const Navigation = ({ userObj }) => <nav>
           </span>
         </ProfileIcon>
 		</li>
-	</ul>
+	</Navbar>
 </nav>;
 
 export default Navigation;

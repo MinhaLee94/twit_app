@@ -36,8 +36,15 @@ function App() {
   	return (
 		<>
 			<GlobalStyles />
-	  		{init ? <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} refreshUser={refreshUser} /> : "Initializing..."}
-			<footer>&copy; {new Date().getFullYear()} Twit-app</footer>
+	  		{init ? (
+			  	<AppRouter 
+			  		isLoggedIn={Boolean(userObj)} 
+					userObj={userObj} 
+					refreshUser={refreshUser} 
+				/>
+			) : (
+				"Initializing..."
+			)}
 		</>
 	);
 }
