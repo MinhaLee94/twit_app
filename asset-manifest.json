@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/twit_app/static/js/main.e9b193fb.chunk.js",
-    "main.js.map": "/twit_app/static/js/main.e9b193fb.chunk.js.map",
+    "main.js": "/twit_app/static/js/main.4c55b24f.chunk.js",
+    "main.js.map": "/twit_app/static/js/main.4c55b24f.chunk.js.map",
     "runtime-main.js": "/twit_app/static/js/runtime-main.9743d7fb.js",
     "runtime-main.js.map": "/twit_app/static/js/runtime-main.9743d7fb.js.map",
     "static/js/2.ebb57f6b.chunk.js": "/twit_app/static/js/2.ebb57f6b.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.9743d7fb.js",
     "static/js/2.ebb57f6b.chunk.js",
-    "static/js/main.e9b193fb.chunk.js"
+    "static/js/main.4c55b24f.chunk.js"
   ]
 }
