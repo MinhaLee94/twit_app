@@ -20,6 +20,7 @@ const TweetList = styled.div`
 
 	& > h4 {
 		font-size: 14px;
+		margin: 0;
 	}
 
 	& > img {
@@ -42,7 +43,7 @@ const TweetIcons = styled.div`
 		cursor: pointer;
 	}
 
-	& > span::first-child {
+	& > span:first-child {
 		margin-right: 10px;
 	}
 `;
@@ -75,7 +76,7 @@ const TweetSubmitBtn = styled.input`
 	cursor: pointer;
 `;
 
-const cancelBtn = styled(TweetSubmitBtn)`
+const CancelBtn = styled(TweetSubmitBtn)`
 	cursor: pointer;
 	background-color: tomato;
 `;
@@ -115,9 +116,9 @@ const Tweet = ({ tweetObj, isOwner}) => {
 						<TweetInput type="text" placeholder="Edit your tweet" value={newTweet} required onChange={onChange} autoFocus />
 						<TweetSubmitBtn type="submit" value="Update" />
 					</TweetForm>
-					<cancelBtn onClick={toggleEditing} >
+					<CancelBtn onClick={toggleEditing} >
 						Cancel
-          			</cancelBtn>
+          			</CancelBtn>
 				</>
 			) : (
 				<>

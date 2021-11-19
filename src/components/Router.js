@@ -4,6 +4,16 @@ import Auth from "routes/Auth";
 import Home from "routes/Home";
 import Navigation from "components/Navigation";
 import Profile from "routes/Profile";
+import styled from "styled-components";
+
+const IfLoggedIn = styled.div`
+	max-width: 890px;
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 80px;
+	display: flex;
+	justify-content: center;
+`;
 
 const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
 	return (
@@ -11,22 +21,14 @@ const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
 			{isLoggedIn && <Navigation userObj={userObj} />}
 			<Switch>
 				{isLoggedIn ? (
-					<div
-						style={{
-							maxWidth: 890,
-							width: "100%",
-							margin: "0 auto",
-							marginTop: 80,
-							display: "flex",
-							justifyContent: "center"
-						}}>
+					<IfLoggedIn>
 						<Route exact path="/">
 							<Home userObj={userObj} />
 						</Route>
 						<Route exact path="/profile">
 							<Profile userObj={userObj} refreshUser={refreshUser} />
 						</Route>
-					</div>
+					</IfLoggedIn>
 				) : (
 					<>
 						<Route exact path="/">

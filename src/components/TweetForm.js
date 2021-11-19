@@ -123,7 +123,7 @@ const TweetForm = ({ userObj,  }) => {
 				/>
         		<TweetInputArrow type="submit" value="&rarr;" />
      		</TweetInputContainer> 
-      		<TweetInputLabel for="attach-file">
+      		<TweetInputLabel htmlFor="attach-file">
         		<span>Add photos</span>
         		<FontAwesomeIcon icon={faPlus} />
       		</TweetInputLabel>
